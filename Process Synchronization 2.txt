@@ -1,0 +1,117 @@
+--All the problems in Process Synchronization occurs because of Race Condition
+---Overview of Synchronization Mechanism
+1. Disabling Interrupts
+-To tackle Race Condition a Process can talk to OS when it doing Critical Setion to not to Interrupt it.
+-This happens only in single processor system
+-These may lead to security problems as allowing a User Process to disable Interrupt is not safe
+2. Lock or Mutex
+-It is basic building block to implement synchronization
+-Idea is Acquire lock, go through Critical Section and Release lock
+-Locks can be implemented for Software and Hardware
+-Hardware locking mechanism is fast and preferred
+-Software locking mechanism are
+ 1. Peterson's Implementation - for 2 processes
+ 2. Bakering Algorithm - for multiple processes
+3. Semaphore
+-It is a higher level mechanism than basic lock
+-It has 2 operations
+ 1. Wait - If a process want to enter in Critical Section, it calls Wait
+ 2. Signal - When it is done with Critical Section, it calls Signal so that other processes can enter in Critical Section
+-These have some basic as well as better implementation
+-These Wait and Signal operations should be atomic because semaphore is basically a variable
+-To achieve Atomicity for Wait and Signal, we use locks
+4. Monitors
+-Mainly used for Thread Synchronization
+-Implemented in Java
+-JVM manages Monitors
+-Monitors are higher level mechanism than Semaphore
+-Instead of applying mechansim(code) at entry and exit point, monitors put all the shared variable in a Class
+-The methods that modify these shared variable are declared Synchronized so that only one thread can run these method at a time
+-Classic Synchronization problems are
+1. Producer Consumer problem
+2. Dining philospher problem
+3. Bounded Buffer Problem
+4. Reader Writer Problem
+-These Synchrnization problems are used to verify that the given Synchronization mehchanism are solving synchronizaton problems
+
+
+---Applications of Synchronization
+--Locks for Synchronization
+-It is a basic Synchronization mechanism
+-It is used for other Synchronization mechanism such as Semaphores, Monitors
+--Test and Set Algorithm is a hardware process Synchronization mechanism which is most commonly implemented by hardwares(TSL lock)
+-The idea is to have an Atomic Operation supported by Architecture so this Race Condition atleast does not happen for these lock(either complete operations happpens or does not happen at all)
+
+
+--Semaphores
+-It is implemented by OS
+-Implemented using Lock
+-Atomicity is necessary
+-Their are many problems in Lock bases Synchonization mechansim
+1. Busy waiting(waiting for lock to become false) takes time
+2. Bounded Waiting time is not checked(No queueing)
+3. Better Utlization of CPU is not present(process dependent on each other has to wait for other process to finish entirely)
+4. What if multi instances of a device is non shareable(3 printers using locks, solution becomes difficult)
+-Semaphores solves above problems smoothly
+-A Semaphore is simply a count variable and a Queue
+-struct{
+   int count;
+   Queue q;
+}
+-count represent number of resources(printers)
+-Initially q is empty
+-Whenever anyone use a resource(a printer) count value is decreased
+-If count<0 -> no printer available
+-Then, You add these process to q
+-This what a process does before acquiring a printer
+-Thus, two operation in Semaphore
+1. Wait
+-Before acquiring a resource(printer) Wait is called
+-It decreases the count
+2. Signal
+-After using a resource(printer) or Critical Section, Signal is called
+-It increases the count
+
+-When all the resources(printers)are occupied and new processes are coming
+-Do not ask them to wait
+-Do not wait in a loop for Critical Section
+-Tell them to go and sleep and Signal will notify you once resource is free
+-When any resource is free Semaphore calls Signal and
+-If there are people in the q, it will wake one of the process and ask them to use resource(printer)
+
+-Analogy of Semaphore
+-A security guard outside restrooms keeping tally of restrooms occupied using count and people waiting using queue(q)
+-For every person count reduces by one and negative number of count tells the size of queue(q)
+-The security guards stores phone number(Process Control Block) of people(Process) in queue(q)
+-When a peson(Process) exits the restroom(resource), A signal is called 
+-Signal increases the count by 1
+-Signal wakes a process from Queue
+-It was originally proposed by Dijkstra
+-Lots of problems and deficiencies in Original implementation
+-Semaphore is used for process Synchronization and for sequencing the statement of the process.
+
+--Semaphore are of two types
+1. Counting Semaphore
+-Above discussion is about Counting Semaphore
+2. Binary Semaphore
+-In many instances we only need a binary semaphore
+-A binary semaphore has values only true and false
+-It can also be used a mutex(lock)
+-Additional functionalities such as Wakeup, Sleep, Queue is also used
+-If resource is occupied value is 0, if not value is 1
+-Everthing else is same as Counting Semaphore
+
+--Monitors
+-Built on top of semaphore and lock
+-Implemented by multi-threading system
+-JVM uses Monitors to manage thread
+-Idea of monitor is instead of putting aquire,release at multiple places, make a class to put shared variable and functions which work on these shared variable
+-Make these functions synchronize
+-If the class has even one synchronized function. It is monitor
+-Only one thread can access object of this class
+
+
+--Priority Inversion
+-Solution of above problem
+1. Priority Inheritance
+-It says that if one of the low priority process share its Critical Section with high priority process than to avoid preemption from medium priority process priority of low one becomes high
