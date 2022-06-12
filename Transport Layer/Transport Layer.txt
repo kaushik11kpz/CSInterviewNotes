@@ -1,0 +1,42 @@
+Transport Layer
+-At Sender's side it receives data from Application Layer and sends it to Network Layer
+-At Receiver's side it receives data from Network Layer and passes it onto Application Layer
+
+-Application and Uses of Transport Layer
+-Process to Process Communication
+-Uses Port Number
+-Every Internet/networking Process is associated with a port number
+-Network layer makes sure the packet reaches the web server/destination but which Process is going to consume this packet 
+depends on Transport Layer
+-Similarily, a device sends or receive many packets in the network, the process which handles this packets is decided by Transport
+layer using Port Numbers
+-Port Numbers are 16 bit unsigned integers
+-Example Well known port numbers
+1. 80 - HTTP
+2. 443 - HTTPS
+3. 53 - DNS
+4. 22 - SSH
+5. 110 - POP3
+6. 25 - SMTP
+-Remaining port numbers are randomly assigned by the OS and are mainly used by the client
+-Transport Layer is implemented in OS
+-Protocol provided by Transport Layer
+1. TCP
+2. UDP
+
+-The TCP connection happens using Socket API
+-Socket API is main part of Transport Layer and is used by Network Programmer
+- Sender/Client side                     Receiver's/Server Side
+  socket()                         socket()
+  connect()                        bind()
+  write()                          listen()
+  read()                           accept()
+  close()                          read() 
+                                   write()
+                                   close()
+
+-The above APIs are provided as System Calls by most of the OS
+-Theproramming languages has library function bilt on top of these APIs
+-The above is only for TCP not for UDP
+-HTTP,DNS,RPC,HTTPS work on top of TCP
+-

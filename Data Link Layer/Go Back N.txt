@@ -1,0 +1,5 @@
+---Go Back N
+1. Sender window size , n(greter than 1)
+2. Receiver Window Size = 1
+3. Sequence Number
+4. Window Size

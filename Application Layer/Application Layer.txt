@@ -1,0 +1,24 @@
+Application Layer
+-The application layer is the topmost layer of the OSI Model. 
+-It is the layer in which user applications run. 
+-Various protocols run at this layer serving different requirements. 
+
+-After client and server are successfully connected via a secure TCP connection,
+-browser issues an HTTP Request to the server demanding it to serve the page requested by the user. 
+-The server responds with an HTTP Response (the HTML page containing images, 
+links to videos and other relevant data ~ JSON data perhaps) back to the client. 
+-The browser application then renders the source files received onto the user screen as a webpage.
+
+ARP
+-ARP (Address-Resolution-Protocol) is the de-facto method of acquiring the physical address of next-hop from it's logical address. 
+-Similarly, Reverse-ARP is the process of getting the IP address from the device's physical address.
+-To get the MAC address of the target machine, the sender broadcasts a special ARP-message over it's immediate neighbors,
+requesting the MAC address. The contents of this message are:
+Sender IP address
+Sender MAC address
+Destinaton MAC address 
+-Upon reception of this ARP message, the device associated with the destination IP,
+-fills it's MAC address into the destination MAC space (filled with 0s), 
+-and unicasts it to the sender (Sender MAC is provided for this purpose). 
+-All other machines simply ignore the request. Finally, the sender recieves the reply and gets to know the destination MAC address.
+

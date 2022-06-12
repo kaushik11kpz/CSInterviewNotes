@@ -1,0 +1,78 @@
+---Data Link Layer
+-Direct One to one communication happens through DLL. i.e direct communication from my laptop to wifi router happens through DLL
+-DLL receives Packet from Network layer, it adds its Header and Trailer
+-Then, transmits the Frame using physical layer(wired/wireless)
+-The Receiver's DLL extracts the Packet from Frame and transmits it to Network Layer
+-DLL does not  care about source and destination
+-Ex- A traffic police person
+
+-DLL is implemented using NIC(Network Interface Card)
+-Every NIC has a fixed 48 bit MAC address
+-It is unique for every NIC
+-DLL works on this MAC address also called Ethernet address
+-The Network Layer Packets have IP addresses
+-The DLL Frame have Headers which have Source Ethernet Address, Destination Ethernet Address, which are MAC addresses
+-Since OS provides drivers for NIC, a part of DLL is implemented using OS
+
+-A Router is a device that has 2 or more Interfaces and Router creates subnets
+-That is, It allows multiple networks or subnets to connect with each other
+
+--Switch
+-It is a DLL device
+-It has multiple ports which allows multiple devices to be connected to it
+-One port of it is connected to router which connects to the Internet
+-This Switch allows devices to directly communicate with each other using DLL
+
+-This connection can also be achieved without Switch. Ex- Bus  topology
+-But, collision occurs
+-These collisions can be handled using CSMA/CD and Aloha
+-Switch avoids collision
+
+-But, in home wifi networks, there is chance of collision
+-Which is handled using CSMA/CA
+
+--Functionalities of DLL
+1. Framing
+-DLL receives Packet from Network Layer
+-DLL have to ensure that the Packet reaches the receiver's Network Layer correctly without any error while passing through the Physical Media
+-As transmission through Physical Media can cause errors because of Signal issues
+-So, it takes the Network Layer Packet, it finds Destination address by using ARP Protocol and puts this address inside Header
+-Inside Trailers, it adds checksum to figure out the error, then it attaches both Header and  Trailer to the Packet.
+-This is known as Frame
+-Now, since the Physical Media only transmits 1 and 0, in order for the Receiver's DLL to understand that a new Frame is coming, we use Framing
+-Framing is of 2 types
+  1. Byte Stuffing
+  -We add a flag with Frame, so when receiver's recieves this flag, it knows that a new Frame has begun
+  -We use ESC in case Flag is inside packet
+  -Much easy to implement and widely used
+  2. Bit Stuffing
+  -We add specific bit with Frame, so when receiver's recieves this specific bit, it knows that a new Frame has begun
+  -If that bit is already present, we add that bit once more there
+2. Error Detection
+-If Physical Media caused any damage to frame, Receiver's must know this and ignore the subjected frame
+-To Detect Error, 3 methods
+ 1. Parity
+ 2. Checksum
+ 3. CRC - used in practice
+
+3. Error and Flow Control
+-Once, we detected the error, we must handle it.
+-The most common way is retransmission
+-For Flow control, management of different speeds of Sender's and Receiver's should be managed
+-The Algorithms to handle such events are
+ 1. Stop and Wait
+ 2. So back n
+ 3. Selective Repeat
+-These are all variations of standard algorithm call Sliding Window
+-These algorithm alltogeher are called, ARQ(Automatic Repeat Request)
+
+4. Multiple Access
+-Multiple Access Algorithm vary from LAN to LAN
+-For wifi(WLAN) CSMA/CA is used
+-CSMA - Collison Sense Multiple Access
+-Since, Traffic is bursty, FDMA and TDMA cannot be used
+-TO allow bursty traffic in efficient way, Algorithms developed are
+ 1. Aloha
+ 2. CSMA/CD
+
+

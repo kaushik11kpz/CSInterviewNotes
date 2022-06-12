@@ -1,0 +1,8 @@
+-Connecting two or more computers/devices/systems together 
+-Data/Information flow from one device to another
+
+-Main Challenges
+1. Reliability
+2. Scalibility
+3. Allocation of Bandwidth
+4. Security

@@ -1,0 +1,27 @@
+CIDER - Classless Inter Domain Routing
+-The idea of CIDER is based on both Classfull addressing and Subnetting
+-It is an improvement over Classfull addressing using the concept of Subnetting
+-For an ISP, with sepcififc requirement it was hard to purchase specific IPs which are needed
+-To Solve this problem CIDER was introduced
+-CIDER puts boundaries in bits
+-Ex - 23 bits for N/W Id
+    - 9 bits for host Id
+-The problem solved is 
+  If need host IP addresses = 500
+  Provided host IP addresses = 512(vey less difference)
+
+  If nedd host IP address = 1800
+  Provided host IP addresses  = 2048
+
+-A block of IP addresses is allocated from 2^32 IP addresses and the number of IP addresses is allocated of thw power of 2
+-Last n bits of starting range of allocated host Id must be 0  
+-Last n bits of ending range of allocated host Id must be 1
+
+-Alternate way of representing IP addresses (CIDER Notation)
+-193.10.10.1/23 ------> This represent both IP address and Subnet mask
+-23 here represents, subnet mask(number of bits in network Id) in 193.10.10.1 is of 23 bits
+-Subnet Mask need not to be represented explicitly
+
+-CIDER makes allocation of IP addresses more efficient without any wastage of IP addresses
+-Introduced in 1990
+-

@@ -1,0 +1,26 @@
+-Error and Flow Control happens in
+1. Transport layer-It works on IP protocol which is conection-less, not reliable
+2. Data Link Layer - It works on top of Physical Layer
+
+-These problems of Error and Flow Control is handled by Protocols such as
+ 1. Stop and Wait ARQ/Alternaing Bit Protocol(as sequence numbers are 0 and 1)
+ -After sending a frame, sender waits for Acknowledgement(ACK), once it arrives, it sends another frame
+ -Look For the Images in Notes for proper description
+ -Stop and Wait algorithm must handle
+ 1.Flow Control
+ 2.Lost Data
+ 3.Lost ACK/Frame
+ 4.Delayed Data/Frame
+ 5.Delayed ACK
+  -Flow control handle
+    -After sending a frame, sender waits for Acknowledgement(ACK), once it arrives, it sends another frame
+  -Timeout 
+    -It is a period till which a sender waits for ACK, once it doesn't receive ACK till timeout, it sends Frame Again
+    -It handles Lost Frame/Data
+  -Sequence Number for Lost ACK
+    -Sender uses, a sequence number fir every frame, if ACK is lost, sender's send it again(same sequence number), 
+     receiver acknowledge it as same frame and ignores it and sends the ACK back
+  -For Delayed ACK
+    -We use Sequence number in ACK
+    -This Sequence number tells the sender next frame expected by Receiver
+ 

@@ -1,0 +1,153 @@
+Computer Networks Models
+1. OSI
+2. TCP/IP
+
+--In Computer Networks 
+-Protocols are set of rules used by two devices to communicate(Ex- HTTP, IP, TCP, UDP, SMTP)
+-These set of rules are decided typically by the Headers
+-These Headers specify the content of the message, details and position of the message and how this message to be processed
+-These Headers can be destination address, source address checksum of the message to do error detection
+-Sender attches the header to the message
+-Receiver side removes and processes the Header, as it where is what information in the header
+-Then receiver forwards the message to the upper layer
+
+
+--Need of Layering
+-The idea of the Layering is that to oraganize all the protocols in different layers according to their utlization
+-Since HTTP is an Application(Top) layer protocol, it does not have to implement anything provided by lower layer protocol
+-HTTP may assume that all the services provided by lower level are already available
+-HTTP protocol is depend on ethernet or wifi
+-Http implements its ow application layer services
+-All Computer networks and Internet can be considered as collection of Protocols and Layers
+-In CN, you have layers and every layer have certain set of protocols and devices communicate using these protocols
+-All these protocols are part of certain layer
+-These Protocols asume that the services of lower layer are available to them and they just have to implement their service
+in their layer
+
+
+1. OSI Model(Open System Interconnection)
+-7 layers
+ 7.Application
+ 6.Presentation
+ 5.Session
+ 4.Transport
+ 3.Network
+ 2.Data Link
+ 1.Physical
+
+-Sender send info/request using HTTP protocol of application layer
+-The Presentation layer adds it Header to the message from upper layer(Application layer)
+-The Session layer adds its Header to the message coming from Presentation layer
+-This goes on, till Data Link Layer adds it Header to upper layer message
+-This is transported through physical(wire/wireless) to Receiver
+-Receiver's receive the message and its Data Link Layer interprets/processes Header of Sender's DLL Header,removes it and passes
+remaining to Upper Layers.
+-Thus, at the end, receiver's Application Layer receives HTTP message from Sender's Application layers and responds accordingly
+
+-Layering helps in encapsulation(only relevant receiver's layer interacts with its counterpart from Sender's layer)
+
+
+--Functionality of Different Layer
+1. Physical
+-Wire/Wireless 
+-Copper, Fibre Optic
+-01010 - Binary
+-Signals
+
+2. Data Link Layer(DLL)
+-It uses Physical Medium to do communication
+-It is responsible by communciation in LAN
+-It provides access in shared medium
+-It provides one device to another device communication
+-Switch, Ethernet, Wifi, Bluetooth
+-Protocols -  802.11, 802.3
+-Switch processes DLL Header
+-Error Control/Detection - handling as it uses Physical Medium
+-Flow Control Handle
+-Collison Handling -  should be avoided in shared medium
+
+3. Network Layer
+-If you wani to connect to a device which is not directly connected to you, you need to have services of Network Layer
+-It routes data from local network to distant networks. It helps in finding routes to distant networks
+-Device - Router
+-Router forwards/routes info to distant networks from local networks
+-Multiple routers are involved in connecting to distant networks
+-All routing happens through Network Layer
+-Protocol - IP
+-Network Layer is implemented by IP Protocol
+-IP Protocol is part of TCP/IP Model, practical model
+-IP Protocol is connection-less protocol, not reliable
+-OSI says that Network Layer may provide reliable/non-reliable protocol
+
+4. Transport Layer
+-The end to end delievery, whether to deliever to browser, email, telnet, ssh login, terminal etc. is decided by Transport Layer
+-End to end delievery
+-It decides which process in computer should be receiving this information/message
+-OSI says Transport layer can provide 5 different types of services
+-Type 0 means, it provides few services to upper layer, Type 4 means it provides all services to upper layer
+-These services are connection establishment, connection release, flow control, error control
+-In Internet, Transport layer implements TCP, UDP protocols
+-TCP protocol has all functionalities, establishes connection, connection oriented, error and control flow
+-UDP protocol provide no such services
+
+5. Session Layer
+-No Session Layer in TCP/IP model
+-In OSI, it does session management and autentication(These things in TCP/IP model are implemented in Application Layer itself)
+-Session Layer helps in sunchronizing videos with voice and images(Combining of multiple streams)
+-Synchronizing web pages with image,text etc.
+
+6. Presentation Layer
+-Not part of TCP/IP model
+-Data Compression on sender side and decompression on Receiver's side
+-Encoding of data in specfic format to be sent over to the network and decoding at the Receiver's side
+-Encryption and Decryption
+
+7. Application Layer
+-Applications like web browser, email client, skype, teams, etc work at these layer
+-Application Layer use Transport Layer services to do their work
+-Application Layer Protocol
+ 1. HTTP(Web Browsing)
+ 2. SMTP(emails)
+ 3. DNS(Domain Name System) like findig the IP address of a URL
+ 4. FTP(File ransfer System)
+ 5. SSH(Secure login on server for remote login)
+
+
+--TCP/IP Model
+-4 Layers
+ 4. Application
+ 3. Transport
+ 2. Network
+ 1. Link
+
+1. Link Layer
+-Does both, physical and data link layer
+-It provides all the functionalities of DLL
+
+2. Network Layer
+-As per TCP/IP, it is always unreliable, connection-less
+-IP Protocol
+
+3. Transport Layer
+-All functionalies provided in OSI
+
+4. Application Layer
+-Same as OSI
+-It implements application using the services of the Transport Layer
+
+-Protocols data unit of different protocols of each Layer
+1. Application Layer
+-Protocols-HTTP,FTP,SMTP,DNS
+-Unit of communication(Protocol Data Unit) - Message
+
+2. Transport Layer
+-Protocol- UDP, TCP
+-Unit of communication(Protocol Data Unit) - Segment
+
+3. Network Layer
+-Protocol - IP
+-Unit of communication(Protocol Data Unit) - Packet
+
+4. Link Layer
+-Protocol - Ethernet, Wifi, Bluetooth
+-Unit of communication(Protocol Data Unit) - Frame

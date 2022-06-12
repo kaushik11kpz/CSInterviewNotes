@@ -1,0 +1,6 @@
+-The Problem with Go back n is
+-If a frame is lost, then all the frame after that will have to be sent again
+-To handle this problem in Selective Repeat, we have receiver wibdow size=n
+-In Selective Repeat
+ -If Sequence Number is m bit
+ -window size= 2^m-1

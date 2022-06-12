@@ -1,0 +1,11 @@
+Distance Vector Routing
+-Used in ARPANET(the first network that implemented TCP/IP)
+-Based on Bellman-Ford Algorithm
+-Distance Vector Routing is Distributed Bellman-Ford Algorithm
+-The problem with Distance Vector Routing is Count-to-Infinity Problem(very slow convergence in case of failures) 
+-Routing Information Protocol(RIP) was based on Distance Vector Routing
+-EIGRP by Cisco is another protocol
+-Every node sends distance vector to its neighbour nodes
+-Distance Vector is shortest distance from this node to every other node
+
+-Because of Count-to-Infinity problem Link State Vector is Used

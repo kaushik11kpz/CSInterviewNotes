@@ -1,0 +1,33 @@
+-Circuit Switching
+ -Used in Telephone and Cellular Networks
+ -In this,
+ 1.Esablish connection(bandwidth allocated)
+ 2.Use connection(use bandwidth)
+ 3.Close connection(release bandwidth)
+
+-If a person wants to talk to a web server in US
+ -A sender sends the requests and receivers sends a response
+ -These requests and response is divided into Packets
+ -These Individual Packets is routed through network
+ -Every packet has destination address
+ -Individual packets may be routed independently(two packets may take different path for same destination)
+ -Since, all these packets go through router, which have a buffer queue
+ -The reason for two packet taking different paths because once, the buffer queue is full(congested), it drops the packets
+
+-This method of Storing and Forwarding of Packets is called Store and Forward Packet Switching
+-It provides efficient utilization of Links
+-This is called Statistical Mutliplexing(Multiplexing over single link)
+
+-Two ways to do Packet Switching
+1.Virtual Circuits
+-Uses concept of Circuit Switching
+-Have a fixed connectionn setup
+-Packets have circuit idenification
+-Failures are hard to fix
+2.Datagram(mostly used)
+-Messages are dividd into packets
+-Connection is not fixed
+-Packets have destination address
+-Routers decide the next hop of packets depends on failures and congestion
+-Routing tables on routers are contiuously updated according to congestion, shortest path, etc.
+-Mostly problems are handed by Transport Layer since IP os connection-less,unreliable

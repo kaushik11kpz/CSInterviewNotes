@@ -1,0 +1,12 @@
+-Real World Examples of Networks and Subnetting
+-While setting up a network at home/office for every device we set up(Network Configurations)
+ 1. IP address
+ 2. Gateway
+ 3. DNS Server
+ 4. Subnet Mask
+-These days we have DHCP which automatically sets up configuration for every device which is connected to network whether
+wireless or wired
+-The multiple interfaces of a router represents multiple subnetworks or networks
+-Router creates subnets
+-
+
