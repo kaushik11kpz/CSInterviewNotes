@@ -1,0 +1,45 @@
+---DBMS
+-Database Management System
+-Every Company used DBMS to operate on Databases
+-DBMS is a software which is used to quickly access and modify data in databases
+-
+--What to learn?
+-How to store in database
+-How to design database
+-How to design database to reduce redundancy
+-How to implement Concurrency in Database
+
+---Evolution of DBMS
+-File Bases System
+  -Inside OS, you have File System and Programmer used languages to read and write data inside File System
+  -Here, Users have to write all the code to ensure all queries of clients are answered
+  -Use of OS service is extensive
+  -There is a possibility of concurrency issues, consistency and security issues while writing data ourselves
+
+-Relation DBMS
+  -Between File system inside OS and User code, we have a level known as Relational DBMS
+  -User code talks to Relational DBMS only
+  -No use of OS services
+  -Here a software, Relational DBMS provides all the services to read and write data
+  -Examples are - Oracle, SQL server, MySql, Postgre SQL
+  -A database is called relational database, if it stores in the form of table(with row and column)
+  -There can be multilple tables in a database
+  -Schema defines how every row should be
+  -These Relational Databases ultimately talk to the File System
+  -Relational DBMS provides SQL
+  -It is 4th generation language which allows the User Code to access and modify data in convenient ways
+  -They have codes to handle concurrency and assign User roles
+  -Here, you have to focus only on business logic as every other issue is dealt by Relational DBMS itself
+
+-NoSQL Database
+  -The Problem with Relational DBMS is it requires a proper structure of data
+  -Data has to follow schema and everything has to be by schema rules
+  -Scalability Problem is also present in Relational Databases
+  -When database becomes too big, scaling is required, hardware improvement is required regularly
+  -To improve efficiency you need to make copies of this database, then write operation becomes difficult
+  -To handle these structure and scalability issues we use NoSQL databases
+  -These do not require any structure and scale horizontally
+  -It is not a replacement of Relational DBMS
+  -Many times NoSQL databases do not provide consistency(latest data)
+  -Ex - MongoDb, DynamoDb, Cassandra
+  -They are not table, they are typically document or key-value pair

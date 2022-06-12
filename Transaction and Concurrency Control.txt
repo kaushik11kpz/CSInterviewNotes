@@ -1,0 +1,36 @@
+---ACID Properties
+-A Database transaction should be completed fully or should not happen at all
+-Transaction and Concurrency is ensured by four properties of DBMS known as ACID Properties
+  -Atomicity - Whole Transaction or Nothing
+  -Consistency - Should remain consistent at the end of Trasaction
+  -Isolation - Multile Transaction should not interfere with one another, every transaction should be done alone
+  -Durability - Changes are durable
+-Concurrency is a procedure in DBMS which helps us for the management of two simultaneous processes to 
+execute without conflicts between each other, these conflicts occur in multi user systems.
+-If a single transaction is happening, then DBMS has only to handle rollback/commit changes, but for multiple transactions
+Concurrency Control comes in place
+-If DBMS server responds to requests(transactions) serially, it response becomes very slow, thus
+-To optimize the performance of DBMS server, we allow multiple transaction(user request) occuring 
+at same time in interleaved(concurent) fashion
+-Multiple transaction might be accessing same data items and might be reading and writing them
+-If Concurrency is allowed, it creates problems
+-We check whether interleaving(concurrent execution) is valid or not
+-If T1 and T2 are transactions, T1T2 and T2T1, both are allowed. This is known as Schedule and we say that this 
+schedule is serializable(T1 finishes then T2 or vice versa)
+-If the schedule is equivalent T1T2 or T2T1, this is called serializable schedule
+-Serializability is used to validate interleaved(concurrent execution) schedule
+
+--Serializability
+-View Serializability
+-Conflict Serializability
+
+
+---View Seriliazability
+-It is required/needed
+-Difficult to check
+-To check whether the generated schedule is View equivalent of generated schedule
+-If generated schedule is View equivalent then it is View Serializability
+-
+
+---Conflict Serializability
+-

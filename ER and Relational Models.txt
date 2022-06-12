@@ -1,0 +1,100 @@
+---Entity Relationship Model
+-Designing of databases
+-ER models is used to design databases
+-Once design is finalized, then we start implementation
+-ER models consists of
+1. Entity Set - Noun (Student,Teacher,Course)
+2. Relationship Set - Verb(studies,teaches,taught)
+3. Attributes - (Name, Start date, End date)
+
+---ER diagrams
+-Entity Set - represented using Rectangle
+-Relationship Set - represented using Diamond
+-Attributes - represented using Oval or Eclipse
+   -Attributes are of many types:
+   1.Composited attribute
+      -Name
+      -Address
+   2.Normal attribute
+   3.Multivalued - It is represented using double oval or double eclipse
+      -Mobile Number
+   4.Derived attribute - Represented using dotted oval or dotted eclipse
+      -Age - It can be derived from DOB
+      -Duration - It can be derived from Start Date, End Date
+   5.Key attribute - Represented using an oval with underlined
+      -Enrollment Number - A student can be identified with just Enrollment Number
+
+---ER diagrams Relationship
+--Degree of Relationship Sets
+1. Unary - One Entity Set is connected(related) to itself
+2. Binary(Most used) - One Entity is connected(related) to another Entity
+3. N-ary - One Entity is connected(related) to multiple Entities
+
+--Cardinality
+1. One to One - One Entity Set of both sides participates
+  Ex- Driver(Entity Set) drives(relationship) a Car(Entity Set)
+2. One to Many - One Entity Set of one side and many Entity Sets of other side participates
+  Ex- One Professor(Single Entity Set) teaches(relationship) Many Courses(Multiple Entity Sets)
+  Ex- Many Student(Multiple Entity Sets) studies(relationship) Single Course(Single Entity Set)
+3. Many to Many - Many Entity Sets of Both sides participates
+  Ex- Many Customers(Multiple Entity Sets) buys(relationship) Many Products(Multiple Entity Sets)
+
+---ER Participation and Weak Entity Set
+--Participation of Entities in Relationships
+1. Total Participation - Represented using double lines
+                      - Every Entity of one side participates in the relationship
+2. Partial Participation
+
+--Weak Entity Set
+-An Entity Set is called Weak Entity Set if it Does not have its own Primary Key
+-These Weak Entity Set always has Total Participation
+Ex - Sections of a Class are Weak Entity Set, thus Section Entity Set takes a key of a class
+-Weak Entity Set takes key of Entity Set
+-Ex- 1.Class Id with  section Id
+     2.Employee Id with Dependent Id
+     3. Host with Login
+
+
+---Key
+-It is an attribute or set of attributes that uniquely identifies a particular entity
+
+1. Candidate Key - One or more than one in number
+- It is a minimal set of attribute that derive all other attributes
+Ex - Adhar Number
+   - Enrollment Number
+   - Pan Number
+- It has to be distinct
+- Non null
+- No extra attribute, minimal
+2. Primary Key - only one in number for a Table
+-Out of all the Candidate key, we pick one key as a Primary Key
+-Ex - Enrollment Number
+-It has to be distinct
+-Non null
+-Primary key is the key on which most query is done
+-Databases store data according to Primary Key
+3. Alternate Key - One or More than One in number
+-All candidate Key which are not Primary key are secondary Key
+4. Super Key - Greater than or equal to Candidate Key
+-Any set of attributes that uniquely identify a row is a Super Key
+-It is non minimal
+-Candidate key + any other key =  Super Key i.e (Candidate key + any other key must uniquely identify rows)
+-Minimizing Super Key, it becomes Candidate Key
+-Non null
+
+---Foreign Key
+-To minimize redundancy, while designing databases, we put data in different table
+-In doing so, some column of one table is closely related to some column of another table
+-A Foreign key typically refers to Primary key or Unique Key of some other Table or same Table
+-Use REFERENCES to create Foreign key
+  Ex - Customer_ID REFERENCES Table_Name(Primary Key of Mentioned Table) 
+     - Customer_ID REFERENCES Customer(Customer_ID) 
+-Alter Table can also be used to add Foreign Key Constraint
+
+--Referential Integrity
+-Since data is in both table i.e Order and Customer
+-If Customer Deletes its Account, to mantain Referential Integrity DBMS provides some method to handle them
+Ex- ON DELETE CASCADE - It says if one entry is deleted from deleted, deleted the related entry from other Table also
+-Other methods are, Null, Restrict, etc.
+-These method ensure Referential Integrity
+  
