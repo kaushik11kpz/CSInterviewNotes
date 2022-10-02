@@ -1,0 +1,72 @@
+---Database Normalization
+-It is done to ensure 
+1. Data Redundancy is minimum
+  Redundancy - Having same data at multiple places
+2. Data Integrity is maximum
+  -Data Integrity - Ensuring that there is no erroneous data in database
+                - Related data is together
+                - Data follow business rules
+
+-Objectives of a good Database design
+1. No updation, deletion and insertion anomalies
+2. Easily Extendible
+3. Good performance for all query sets
+4. More Informative
+
+-Updation anomaly - It is caused when you have redundancy in database, when you have text field appearing in multing places
+-To remove, table is needed to split into multiple(2 or more than 2) tables, so that every field is stored at only one place in a table
+
+-Insertion anomaly 
+-Deletion anomaly
+
+The main solution is to break a table into few tables but 
+also avoid breaking into multiple(more than required) tables as it lead to performance issues
+
+---Functional Dependency
+-A->B(B is functionally depended on A)
+-For a given attribute, if you can uniquely define other attribute then there is a functinal dependency 
+-Multiple attribute combined can also give functional dependency
+-Ex- Enrollment number uniquely defines every attribute of a table
+-Knowing funtional dependency helps us to reduce redundancy as we can break a table into two or more table using functional dependency
+-It is studied to perform normalization of databases
+-Normalization is done to reduce redundancy
+-Redundancy is reduced to avoid insertion, updation and deletion anomaly
+-Funtional dependency are if 2 types
+1. Trivial FD - which are obvious
+   Ex - A->A, AB->A, ABC->C
+2. Non-trivial - which gives unique genuine information
+   Ex A->B, AB->C, BC->DEA
+
+---First Normal Form
+-First set of rule to normalise a database
+-1NF says - Every attribute should contain single value(atomic). A particular cell should not have multiple value.
+-To achieve 1NF,
+1.To have multiple column(Bad idea)
+2.We have to use the repeated value again with same primary key(Have Multiple Row)
+3.Have multiple tables
+
+---Second Normal Form
+-2NF - 
+Rule 1. Should be in 1NF
+Rule 2. No partial functional dependency  
+-ie. No non-prime attribute should depend upon partial candidate key
+-Candidate key is a minimal key which defines all the attributes of a table
+-Prime attribute is any attribute which is a part of any candidate key
+-To achieve 2NF,
+-Break table into two table
+
+---Third Normal Form
+Rule 1. Should be in 2NF
+Rule 2.No non-Prime attribute should depend upon another non-prime attribute
+-To achieve 3NF,
+if you already have 2NF - take non prime attributes(which voilates 3NF) together and make a separate table
+and the non prime attribute which was defining the other non-prime table is also present in first table
+
+
+---BCNF
+Rule 1. Should be in 3NF
+Rule 2. Both Prime and Non Prime attribute should not define a Prime Attribute
+-To achieve BCNF
+Divide it into two tables
+Even then, sometimes, perfect BCNF is not achieved
+-It is not always possible to decompose a table in BCNF and preserve dependencies

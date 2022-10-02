@@ -1,0 +1,125 @@
+---Indexing in Database
+-Indexes are used to improve performance of your queries
+-since, DBMS server stores information in Hardisk, so Indexing is used inside Hardisk
+-Orders are stored in blocks of hardisk
+-Number of order that can be stored in a hardisk block depends upon block size
+
+--Need of Indexing
+-For tables with millions of records in hardisk, searching a particular record takes alot of time
+-Here, traversal of all block is required for a particular query, since data in hardisk is not stored in particular order
+-Indexing puts an order in data of hardisk
+-This is called CLUSTERED Indexing
+
+--CLUSTERED Indexing
+-The idea is put order to database storage in files
+-The order_id is stored in ascending order
+-Binary search can be applied here O(log n)
+-In Clustered Index, order id is stored in increasing order of disk block
+-If Clustered Indexing is not applied, then order id are random and not in any order, this organization is called Heap Organization
+-Indexing ensures that items are stored in increasing order of order id
+-Indexing leads to extra cost in deleting records, as everything has to be rearranged
+-Most DBMS Server by default create a Clustered Index on Primary Key
+-If Primary Key is defined in the table, DBMS automatically creates Clustered Index on this Primary Key and store data 
+in blocks of hardisk in increasing order of Primary key
+-Primary Key can also be composite
+-Clustered Index leads to item physically stored in increasing order of key or attribute
+-When Primary Key is used as Index, it is called Prime Index(It is a Clustered Index with Primary Key)
+
+--Non Clustered Indexing
+-Since, Clustered Indexing can physically organize data only on one key, but if multiple items are there to 
+be searched, Clustered index cannot be used
+-So, you need one more Index, this index is called Non-Clustered Indexing
+-In Non Clustered Indexing, data is not physically ordered according to same order,
+you need to do something extra to find out multiple result of a query
+
+
+---Implementation of Clustered Indexing by DBMS Server
+-DBMS maintains a file called Index file
+-Index file has two types of entries
+  1. Search_Id
+  2. Pointer - It stores reference to disk block containing given key(Search_Id) (Address of hardisk block which contains that key)
+-These Index files are of two types
+  1. Ordered Index File(stores search_id in increasing order)/Sequential Index File Orgainzation
+  2. Hashing File Organization
+-Ordered Index File can be
+  1. Dense- Every key has an entry in Index file(only once) and for every key value, you have disk block address
+          - It is quite big in size
+          - It has better performace than Sparse Ordered Index File
+          - It required larger memory than Spare Ordered Index File
+  2. Sparse- Some Key/Indexes are skipped(not stored)
+          - It affects performance
+          - It requires less memory as comapred to Dense Ordered Index File
+          - Less overhead
+
+---Implementation of Non-Clustered Indexing by DBMS Server
+-Over the time, quick access using other attributes other than Clustered Index is also required
+-Example- What are the orders placed by a particular Customer_id, thus it can have more than one results, which can be present in various blocks
+        - To get all the results of above query very quickly we require Non-Clustered Indexing
+-Non-Clustered Indexing is different from physical organization of data
+-Non-Clustered Indexing is implementated similar to Clustered Index
+-Inside the Index File the address(pointer) block contains multiple addresses for every search_id(attribute)
+-No Sparse Indexing as data is not physically organized according to specific attribute
+-Only Dense Index File is allowed
+-Inside Index File, for every attribute, there might be different block addresses
+-Non Clustered Index is also called Secondary Index
+-If attribute, chosen for Non-Clustered Indexing is unique, then Index File will be similar to Clustered Index File, only one address for attribute
+-In Non-Clustered Indexing(Secondary Index) data is not physically ordered according to the attributes or single attribute,
+ but you have the block addresses stored in the Index File
+-Secondary index need to be created only on most frequently searched attribute
+-There is tradeoff between Overhead and Performance
+-Index file need to be updated every time ysou create insert delete any item
+-One Clustered Index and many Non-Clustered Index in a table
+
+---MultiLevel Indexing
+-To implement Indexing DBMS Servers maintain an Index File
+-These Index File contains data items(key attributes) and Pointers(address) to disk block
+-Database Grow Over the Time, so the Index File also grow over in time and might not fit in one block
+-That is, mutilple block of Index Files might be present as the database grows
+-So, to search a key, we have to go to all blocks of Index Files to find that particular record
+-To reduce the number of disk block access of Index Files, we use Multilevel Indexing
+-We create one more level of indexing, where pointers points to particular Index File block
+-So, with Multilevel Indexing, we reduce the number of disk block access for accessing and searching attribute in Index File
+-The problem with Multilevel Indexing is, database size may grow over the time, thus we need to increase the number of level accordingly
+-This is achieved through B and B+ trees
+-These data structure grow and shrink according to incoming and deletion of data
+
+---B and B+ Trees
+-They are n-ways search trees
+-Every Node has some values
+-The number of nodes that a branch can contain is defined by Branch Vector(b)
+-if b = 4, than Node can contain maximum b children and minimum [b/2](ceiling) children
+-If a node has 2 children then it has one key
+-The number of key present in a node is equal to number of children-1
+-for 4 children, number of key = 3
+-These are self balancing search trees
+-This self balancing ensures that for node n, height never goes than log n
+-Keys in B and B+ trees are values of attribute on which Indexing is created in terms of Database Indexing
+-Branch factor is usually very high
+-Value of branch factor depends upon size of record required to be stored in B and B+ tree and the disk block size and size of address of an disk block,
+ultimately every node of B or B+ tree has to fit inside these disk block
+-The [b/2](ceiling) condition of branch vector(b) is not applicable for root
+-Height of these trees grows upwards
+-Height of tree grows as number of Key grows
+-If number of Keys are removed, it shrinks the height
+-Since, B trees are used to represent Index Files, they should have pointers to actual blocks of disk where records are stored and should also contains Pointer to Children Nodes
+-In B tree, for every Key value, we have two pointers assosiated on right of it 
+-Index File Block and data block   
+-First pointers points to disk block where value corresponding to attribute 10 and whole row is present
+-Second pointer points to node of B tree disk block which an Index disk block
+-Child pointers also points to disk block
+
+
+--2 Level B+ tree
+-Improvement over B tree
+-Used by most DBMS Server for Indexing
+-Inside each Internal node, a key has one pointer, which points to Index block file, i.e other B+ Tree nodes
+-All the leaf node are connected with each other and these allow you to sequencially access the data, thus every data item has to be present in the leaf node
+-Every item that is present in Internal node is also present in leaf node, so you can access all table entries in sequential manner
+-Internal nodes points to Index File blocks which are other B+ tree nodes
+-These B+ tree nodes are actually Index File blocks
+-Leaf nodes points to data blocks
+-Here you do not have two pointers associated with every key, this is an advantage
+-The drawback is, key value might be present two times
+-It is used for multilevel Index
+-It automatically grows and shrinks according to number of keys
+-
