@@ -1,0 +1,63 @@
+---Deadlock
+-Every processes requires resources be it printer to print, file to read and write, etc.
+-Resources are either shareable and non shareable
+-It is responsibility of OS to assign requested resources to the Processes.
+
+--Deadlock is a phenomenon in which various non shareable resorces are assigned and hold by different processes 
+waiting for other resources which are also hold by different process
+-Multiple process can be in deadlock together.
+-No progress in deadlock
+-Deadlock is shown in Resource Allocation Graph
+-This graph shows Processes as Circle, Resources as Rectangles
+-Number of instances of resources are shown as exact number of dots
+-Deadlock happens in DBMS
+
+--4 Necessary conditions together for deadlock
+1.Mutual Exclusion
+-Deadlock happens if resources are non shareable
+2.Hold and Wait
+-Processes must be holding some resources as well must be waiting for resources
+3.No Resource preemption
+-OS assigned resource to a process and now this resource cannot be taken back
+4.Circular Wait
+-Process are waiting in circle for each other to free resources
+
+--Methods of Handling Deadlock
+1.Deadlock Prevention
+-Make sure that 1 of 4 necessary conditions never happens in the system
+by setting up some rule so that none of that processes and resources enter in deadlock state
+-It ensures that OS never receives a request which can cause deadlock
+2.Deadlock Avoidance
+-It allows processes to request any resource from OS and OS has to check whether granting requests would lead to deadlock or not
+-Banker's Algorithm
+3.Detection and Recovery
+-In this, OS periodically runs and check whether deadlock happened or not
+-If deadlock occured, to recover it, this method picks a process and kills it so that rsources assigned to this process are released and deadlock is removed
+4.Ignore the deadlock
+-Since removing and preventing or avoiding deadlock causes CPU time, we ignore the deadlock for users to handle
+
+-Real world system uses mixed approches to handle deadlock depending on resources
+
+--Deadlock Prevention
+-Prevent/Eliminate any of following four
+1.Mutual Exclusion
+-It is practically impossible to eliminate Mutual Exclusion however it can ve suppressed to some extent
+-Techniques to remove mutual exclusion is
+  1.Spooling
+   -It is a technique in which a process(Job) is assigned to a non shareable resource(printer) in Job Queue and one by one each process is executed
+   -It is a not a full proof solution to eliminate Mutual Exclusion as sometimes, Job Queue becomes full and the prcoess might still be waiting for resource as Job Queue is full
+2.Hold and Wait
+-There are 2 ways to eliminate hold and wait
+  1.Tell the OS in advance the resources a Process requires
+  - It is highly impractical
+  2.A Process requesting a resource has to release all the resources it is already holding
+  -
+3.No Preemption
+-OS can take sway the resources allocated to a process
+-It is also impractical solution 
+4.Circular Wait
+-We elimiate Circular Wait by numbering the Resources and
+-making a rule that a proess can take Resources only in increasing order of their number 
+
+
+

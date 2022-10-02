@@ -1,0 +1,88 @@
+---Scheduling Algorithm
+--FCFS(First Come First Serve)
+-Simple and easy to implement
+-Non preemptive
+-Convoy effect - (It is a problem) When a process is CPU bound(takes large CPU time) and a process which requires CPU time and multiple 
+high I/O time process have to wait for completion of CPU bound process(A VIP taking long time at tool collection centre)
+-Average Waiting Time - It is not the best for fcfs
+
+--Shortest Job First Algorithm
+-Consider the job in increasing order of their CPU burst time
+-The job with least CPU time is schedule first
+-Two version of Shortest Job First Algorithm is
+1. Shortest Job First Non Preemptive Algorithm
+-At first the first arrived process runs
+-After this, the process with samllest burst time runs
+-No process is taken out in middle of execution(Non-preemptive)
+
+2. Shortest Job First Preemptive Algorithm/ Shortest Remaining Time First Algorithm
+-It provides minimum average waiting time among all algorithms
+-CPU bound job suffer in this algorithm
+-This algorithm assumes that OS knows bursts time of every process in ready queue, which is impratical
+-At first, the first job(process) goes into execution
+-At the arrival time of next job(process) the remaining burst time of the current executing job and the newly arrived job is compared
+-The job with the smallest burst time goes into execution
+-When again a next job comes, the burst time of current executing job and the newly arrived job is compared
+-When a job is finished, the remaining burst time of the previous job is comapred with the burst time of all the job and the minimum burst time job goes into execution
+
+--Priority Scheduling
+-Priority can be assigned statically by long term scheduler and dynamically while the process is running
+-Statically by observing the deadline of the process
+-Dynamically by observing the wait time of the low priority process
+-Two version id Priority Scheduling
+1. Priority Scheduling Non preemptive Algorithm
+-Every Process is assigned priority
+-Process with high priority is executed first
+-In, Processes with equal priority, the first come Process goes to execution first
+-It is very common algoritm
+-Starvation of low priority process(High Priority process keep coming, low priority process doesnot not get CPU time)
+-Aging is the solution of Starvation problem.(Increase priority of low priority processes with time)
+
+2. Priority Scheduling Preemptive Algorithm
+-It is very common algoritm
+-Starvation of low priority process(High Priority process keep coming, low priority process doesnt not get CPU time)
+-Aging is the solution of Starvation problem.(Increase priority of low priority processes with time)
+
+--Round Robin Scheduling Algorithm
+-Most popular scheduling algorithm
+-It is preemptive by nature
+-It maintaines a Time Quantum of specific unit
+-It maintains a Circular Queue as as ready queue
+-This time quantum is assigned to every process in circular manner
+-Good Respose Time
+-Average Waiting Time is higher
+-Sensitive to time quantum(if it is low context switch happens frequentally). Thus time quantum is chosen carefully
+-Context switch is costly
+-If time quantum is low, context switcg happens more, thus context switch overload
+-If time quantum is high, it becomes FCFS
+
+--Multilevel Queue Scheduling and Multilevel Queue with Feedback
+-Ready Queue is divided into multiple queues
+-Multilevel Queue scheduling is the scheduling of ready queue such that different types of process are scheduled according to their specific needs.
+-As Some process need good response time so they can be put in a specific queue for Round Robin Algorithm to be applied
+-Some process requires minimum waiting time, so they are put in specific queue for Shortest Job First Algorithm to be applied, etc
+-Now, you get the flexibility to apply different scheduling algorithm in these different queue
+-When different queues are present, there might be different ways to allocate CPU to these queues.
+-These ways are 
+1. Assigning priority to queue(highest then lower priority queue goes for CPU(processor) execution)
+2. Using Round Robin Algorithm for each queue
+--These algorithms/queues are put at different levels and these level can work independently
+-One other way putting queues in levels are are using Foreground and Background queue( 2 levels only) like in Linux
+-Starvation is present Multilevel Queue Scheduling
+-To deal with problems related to Startvation in Multilevel Queue Scheduling, multilevel queue feedback is used
+
+--Multilevel Queue with feedback is the most using algorithm for most OS
+-Multilevel Queue with feedback solves Starvation problem
+1. If a process initially CPU bound after sometimes becomes I/O bound. This is where multilevel feedback queue comes into the picture
+2. Some lower priority job Starving in lowest priority queue(usually do not get CPU time). To sove it, an Ageing factor can be added(move them to upper priorty queues)
+-Process should be allowed to move across the queues. This is the idea of multilevel queue with feedback
+-Windows, MacOs, Solaris all use multilevel queue with feedback
+Advanatges of Multilevel Queue with feedback
+1. It provides flexibility
+2. Different sheduling algorithm and different queue
+3. Different processes can move across queue over time.(up and down both)
+-It is complex to implement
+
+
+
+

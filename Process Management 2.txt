@@ -1,0 +1,22 @@
+----Process Scheduler
+-It is movement of one state to another
+-This is done by OS using schedulers
+-These schedulers are called Process schedulers
+-Types of Process Schedulers
+1. Long term schedulers
+-It moves processes from hardisk to RAM(to Ready state)
+-It controls degree of multi-programming(meaning how many processes you have in RAM)
+-Ideally, it brings a good mix of I/O bound and CPU bound prcoesses
+--A process is called I/O bound if it does Input/Outpt most of the time. This gives free time to CPU
+--A process is called CPU bound id it uses CPU most of the time. This takes more CPU time
+2. Short term schedulers
+-It moves processes from Ready to Running state
+-It also calls dispatcher
+-It assigns processor to one of the picked processes.
+-It runs actively by OS as compared to Long term scheduler
+--Dispatcher does Process Control Switch
+3. Medium term schedulers
+-The last two states Suspended/Block, Suspended/Ready are done by medium term schedulers
+-Moves processes from Waiting state to Suspend/Block state and also resumes back from that state
+-Moves processes from Ready state to Suspend/Ready state
+-

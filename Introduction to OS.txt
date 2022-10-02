@@ -1,0 +1,97 @@
+Lecture 1 - Intro to OS
+OS is an interface for applications as well as hardwares.
+Os provides basic services known as system calls.
+Libraries and application works on top of these system calls.
+Services provided by OS
+1. Resource Management
+2. Abstraction
+3. Protection
+
+Lecture 2 - Types of OS
+Classification of OS based on functionality
+1. Single Tasking: Ex- MS-DOS
+ Loaded in RAM
+ Allow only one process to run at a time
+ These are inefficient OS
+2. Multiprogramming and Multitasking
+ The idea is to use single CPU to allow multiple processes to run concurrently.(Maximum CPU capacity utilisation)
+ Multiple process are present in RAM and if one process is doing I/O, we assign other processes to CPU(concurrent). This is multiprogramming.
+ Multitasking is an extension of Multiprogramming where processes are run in time slot manner i.e assigned fix quantum time
+ Multitasking improves responsiveness of system.
+3. Multithreading
+ Extending interleaving(concurrent) idea within the process level.
+ In multithreading, multiple threads run within a single process in interleaved(multiprogramming) fashion.
+ Increases responsiveness.
+ Utilises CPU efficiently.
+ Process looks responsiveness, handles more responsibilities efficiently
+ Switching from one thread to another thread within a process is less costly compared to switching between the processes.
+ 
+After loading from hard disk to RAM a program or an application becomes a process.
+A thread is a smallest unit of execution that can be assigned to the CPU 
+Every process has its own memory map that stores the mapping of physical address to its virtual address mapping
+Context switching between processes is a heavy task whereas in thread it is easy as you have to just change stack pointer and some general purpose register.
+
+4. Multiprocessing
+ It is the ablity of operating system to support multi processors.
+ It helps to divide  multiple thread into multi processors and multiple processes to multiple processors.
+ 
+5. Multi user
+
+Lecture 3 - Multithreading Intro
+1. Disadvantage of multithreading
+ Can lead to deadlock and race condition(Multiple threads accessing the same memory space at same time)
+ Difficult to write, test and debug code.(In multithread operation, output can be different when run at different times)
+ Might be difficult to reproduce same error.
+
+Lecture 4 - Thread vs Process
+ A process with single thread has one stack and a process with multiple threads have multiple stack for function call as multiple function might be running concurrently or parallely.
+ Parallel execution:
+ If the OS is multiprocessor than threads must be running on different processors. This is called parallel execution
+ Concurrent execution:
+ If threads are running on a single processor and are multitasking(time slot) and multiprogramming.This is called concurrent execution.
+ All threads in a process share the same heap,data and code but have their own function call stack.
+
+ Threads vs Process:
+ Threads are easier to create and terminates
+ Threads are leightweight(consumes less resources)
+ Multiple threads in a process:
+ 1. Share same address space.
+ 2. Easier to communicate
+ 3. Context switching is easy.
+
+Lecture 5 - User threads vs Kernel Threads
+1. User Managed Thread vs Kernel Managed Thread
+ User managed thread means a process is creating multiple threads and the kernel is not aware of these threads. These threads are managed by process itself.
+ User managed threads are purely managed in user space and kernel is not involved at all and kernel managed threads are managed in kernel space.
+ Context swithing in user managed thread is really fast as no need to switch the process context.
+ Kernel managed threads requires involvement of a kernel, meaning mode switch is required. Mode switch is system call.
+ In user managed thread if one of thread make blocking system call it will block entire prcoess but in kernel managed only that specific thread is blocked.
+ User managed thread cannot take advantage of multiple processor because one process is scheduled only on one processor.
+ Creation and termination in user managed thread is fast as no Mode switch is involved.
+
+2. Mapping of user thread to kernel thread 
+ 1. One to one- One user managed with one kernel managed 
+   Context switching is slightly slower than many to one
+   Can take advantage of muti processoor
+ 2. Many to one - Many user threads are mapped to one kernel thread
+  This can be seen as purely user managed system as just one kernel thread is involved
+  Context swithing is faster
+  Can run system which does not support multi-threading
+ 3. Many to may - Many user managed threads are mapped with many kernel threads
+   Rarely used
+
+Posic library
+Java multi-threading libraby
+ These library provides interface to create user managed threads.
+ Most of these libraries use one to one mapping threads.
+ 
+ 
+
+
+ 
+ 
+
+ 
+ 
+ 
+ 

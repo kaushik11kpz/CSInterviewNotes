@@ -1,0 +1,75 @@
+---Introduction to Process
+-A Program(c++) ------->(compiled) Binary file(.exe)--->when this file is run(loaded into RAM)----> A program becomes a process.
+-A Process is a Program in execution
+-A Process has
+1. Data (static and global variable)
+2. Code 
+3. Heap(for dynamically allocated memory)--heap goes upward.
+4. Stack(for function call)--stack goes downward.
+
+---Process States
+--Process states in a multi-programming system
+1. New state
+-Process is just began
+-Just double clicked on executable file
+-Process control information has been created by OS
+-Executable file not yet loaded to RAM(still in hardisk)
+2. Ready state
+-Once executable file is loaded into RAM(in memory) it goes into Ready state(some part still not in the RAM).
+-Once the process goes in the Ready State, it is ready to be picked by the processor
+3. Running State
+---Dispatcher is a process in OS which dispatches the process(which are in ready state) from RAM to the processor(CPU).
+-After the dispatch dispatches the Ready state process to processor. It goes to the Running state.
+-Now, it is assigned to processor(CPU) and it is doing computations.
+-In Running states there are 3 possibilities.
+1. In case a high priority Process comes - This Process goes from Running State to Ready State(Running -----> Ready);
+2. In case of multitasking system, when time slot expires - Process goes back to Ready state(Running ------> Ready)
+3. in case of I/O required for the Process - Process goes to Waiting State then after I/O is completed, process goes to Ready State(Running--->Waiting---->Ready)
+
+4. Waiting State
+-Goes when function such as I/O is required
+-You may assign other processes to processor after previos Process goes to Waiting state.
+-From Waiting state is goes to Ready state to picked up by the dispatcher whenever processor(CPU) is free. (Waiting--->Ready)
+5. Finished/state  or Abort state(in case of error)
+6. Suspend/Block state
+-Sometimes when all the processes are in I/O and processor is free(as no process is in ready state). This is not effective as the processor is idle.
+-To tackle above loss, we move some of the process from Waiting(in RAM) state to Suspend/Bock(to hardisk) and bring new process in RAM(Ready state) for execution by processor.
+7. Suspend/Ready
+-After moving to hardisk(Suspend/Block state) when the process completes I/O, it is moved to Suspend/Ready state(still in hardisk)(hardisk to hardisk)
+-Now, whenever the RAM is free, the above process goes to Ready state(in RAM)
+-Ready state process can be moved to Suspend/Ready state if space in RAM required for a high priority task.(RAM to hardisk)
+--CPU only interacts with RAM never with hardisk
+--It is the job of OS to appoint task to the processor(CPU)
+
+--To store these suspended process data, OS have deciated space
+Ex- In Linux - Swap space, Swap partition
+    In Windows NT - file page known as file doces
+
+---Process Control Block
+-Once a process is executing in processor and because of some issues it is called by to Ready state(RAM) and when the processor(CPU) is free that process is again called 
+ from Ready state to Running state and all the information of previous execution of the process is stored in a Data Structure known as Process Control Block
+-Due to Process Control Block data structure the process resumes from the same point from it was called back.
+-Process Control block is the most central data structure of OS.
+-All the modules of OS such as I/O module, Process Management module, Memory management module use Process Control Block
+-OS stores this data structure at the most secure location in the memory so that it can never be corrupted by any user process
+--Elements of Process Control Block
+1. Process ID
+-Unique identifier assigned to each process by OS
+-It is an Integer
+2. Process State
+3. CPU Registers
+-The registers used by prcoess in previous computations
+-Program counter is an important register which tells the next instructions to be executed
+-Program counter must be set to point when this process was called back, that instruction can be used to resume execution for next instructions
+-Using Program counter process can resume the operation from the same point.
+4. Acounting Information
+-How much CPU time it has consumed so far.
+-More info specific to system
+5. I/O Information
+-What I/O process was using
+-Status of those I/O
+6. CPU Scheduling Information
+-Prioroty of this process
+7. Memory Information
+-What all memory allocated to this prcoess
+-Where these are all allocated

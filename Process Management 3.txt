@@ -1,0 +1,41 @@
+---Background for Scheduling Algorithms
+-Different Queues
+1. Ready Queue - keep ready state process in a queue - for scheduling algorithms
+2. Job Queue - keep new state process in a queue
+3. I/O Queue - It is for I/O devices(multiple devices have their own I/O queues)
+-Short term scheduler job is to pick one of the process from the ready queue
+-After it, dispatcher does context switch/mode switch, it also makes process jump to the line where to begin it.
+-These scheduling algorithms are for short term scheduler or for the process which are in ready queue
+
+--When a process is picked by short term scheduler(when a short term scheduler is called)
+-When some other process moves from running to waiting(when itself is stops for I/O operations)
+-When some process moves from running to ready(when stopped by processor) - preemptive scheduling algorithm is used by short term scheduler which can stop a process from running state
+-When a new/existing (high priority) process moves to ready state - preemptive scheduling algorithm  is used by short term scheduler which can stop a process from running state
+-When a process terminates
+
+--Different Times used in scheduling algorithm
+-Time frame in CPU schedulng are generally represented using Ghantt Chart
+-We represent activity of CPU(processor)
+-Points on Time Frame
+1. Arrival Time
+- The time at which a process arrives
+2. Completion Time
+- The time at which a process is completed/terminates
+
+-Difference between two points in Time Frame
+1. Burst Time
+-Total time a process takes
+2. Turn Around Time = Completion Time - Arrival Time
+-Difference between Completion Time and Arrival Time
+3. Waiting Time = Turn Around Time - Burst Time
+-The time a processs spends in Ready Queue(time in which other process except current is running in processor)
+4. Response Time
+-Difference between Arrival Time and the first time this process gets CPU(processor)
+
+--Goals of Scheduling Algorithm
+-Maximum CPU Utilization
+-Maximum Throughput(maximu job per second)
+-Minimum Turn Around Time
+-Minimum Waiting Time
+-Minimum Response Time
+-Fair CPU Allocation(No starvation)

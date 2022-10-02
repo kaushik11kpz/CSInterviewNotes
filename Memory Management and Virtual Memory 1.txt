@@ -1,0 +1,173 @@
+--How are Programs Compiled and Run
+    Source Code
+        |
+     Compiler
+        |
+    Object code(machine specific)
+        |
+      Linker
+        |
+    Executable
+        |
+      Loader
+        |
+   In Memory Running <------(Dynamic Linking)---- Dynamic Loaded System Library
+
+-Source code is given to compiler
+-Compiler converts source code to object code i.e machine specific object code
+-Once, object code is produced Linker comes to the picture
+-Linker links the functions called in main function(puts functions called in main function to file)
+-Linker can be static or dynamic
+1.In static linking, code of the function(called in main function) is copied to object file, then an executable file is generated
+2.In dynamic linker, stub(a placeholder) is added instead of copying code of function and when program is loaded into memory
+at runtime when it needs the function, it is searched in memory at runtime and used to form an executable file
+-Dynamic linking is a process which requires to go through a memory and search whether it is already linked or not. It requires support of OS
+-After an executable file is made Loader comes into the picture
+-Loader runs the executable file, it copies the executable file binary into main memory so that it can be run there step by step
+-While it is running it can be directly linked with other libraries
+
+--Memory Management in OS
+-Memory Hierarchy
+1. Cache Memory
+-Large Access Time
+-Low Capacity
+-High Cost
+-Cache memory is closest to CPU
+2. Main Memory(RAM)
+-Average Access time is medium
+-Medium Capacity
+-Medium Cost
+-It is kept next to Cache Memory
+3. Secondary Memory(Hard disk)
+-Lowest Access Time
+-Lowest Cost
+-High Capacity
+-Kept next to Main Memory
+-This memory hierarchy works greate because of locality of reference
+Ex- Shopkeeper keeping frequent bought item closest
+
+--Address Binding
+-When a Binary code of a program is produced, it contains Relocatable address(in binary form)
+-To run a binary file, it must be loaded into the Main Memory(RAM)
+-Physical addresses are the actual address in Main Memory
+-Address Binding is mapping of relocatable address to Physical address
+-Address binding can help at different stages
+1. Compile Time Address Binding
+-It means Compiler knows where the binary code will be loaded in main memory
+-It is a past phenomenon Ex- dot com file in MS-DOS
+-Loader simple copies binary to base memory location
+-It happens through Software
+2. Load Time Address Binding
+-In this, Loader has the executable file which has all the relocatable adresses and it puts the file inside Main Memory with some base location and all relocable/relative address are
+recomputed with reference to base address
+-The problem with this binding is once a program is loaded to Main Memory, it cannot be moved to some other memory locations in Main Memory(for I/O operations)
+-It happens through Software
+3. Runtime Address Binding
+-Happens in modern OS
+-The addresses generate by CPU are not physical addresses
+-CPU generates logical addresses
+-These logical addresses are converted to Physical Addresses at runtime.
+-Here,the advantage is due to logical addresses, Process can move to different locations in memory
+-To implement Runtime Binding Hardware support is required
+-Memory Management Unit(MMU) converts Logical Addresses to Physical Address
+-Logical Address are relocatble address with reference to 000
+-MMU has 
+1. A Limit Register
+2. A Relocation Register
+-When process is loaded into the memory above registers are loaded by OS
+-When process run CPU generates logical address
+-Limit Register and Relocation register are used to convert logical address to Physical Address at runtime.
+-Limit Registers checks if a Process generates logical address beyond its memory allocation, hardware send a Trap to OS
+-Otherwise it adds relocation register addresses to give Physical Address
+
+--Evolution of Memory Management
+-Earlier, System were Single Tasking, thus proper utlization of speed of CPU could not happen as only one process was allowed at a time(even in I/O)
+-In Multi-tasking, multiple Processes are stored in memory at a time. Due to this certain problems comes for memory allocation in Main Memory.
+-These problems are solved using partitioning
+-Partitioning is dividing Main Memory int various subparts
+-Two Types of Partitioning
+1. Static Partitioning
+-Degree of multiprogramming is limited
+-Never can have more than a fixed number of processes
+  1.Equal size partitioning
+    -Here, the Main Memory is divided multiples blocks of fixed size
+    -When assigning Process fixed block of Main memory, sometimes a small size Process is given a fixed memory which is large as compared to Process requirements
+    -Above phenomemon is known as Internal Fragementation
+    -Thus, sometimes when a Process requires some amount of memory and that amount of Main Memory is present but is in smaller chunks, but this memory cannot be allocated to the Process
+    -This is known as External Fragementation
+    -Here, External Fragementation is caused by Internal Fragementation, but not everywhere
+  2.Unequal Size partitioning
+    -Idea here is to better utilize Main memory than Equal size partition
+    -Division of Main Memory occurs by multiple blocks of different sizes
+    -The Process of specified memory unit is allocated to that memory block which is equal to slightly greater in size than the Process
+    -It is better than Equal Size Partion 
+    -But, the problem of Internal Fragementation and External Fragementation is still present.
+2. Dynamic Partitioning
+-Degree of multi-programming is not limited
+  1.Contiguous Partitioning
+    -Main Memory is not divided into any block
+    -As Prcoess comes to memory, unit of memory same as required by the Process is allocated to the Process
+    -No Internal Fragemenation occurs
+    -But, External Fragementation is present
+    -To Solve External Fragementation, Compaction and Defragementation is used
+    -Compaction is used to reduce external fragmentation. 
+       -Here, chunks of left memory is brought together for new processes
+       -It is costly
+       -Cannot happen frequently
+       -Not feasible
+    -Defragmentation reduces data access time and allows storage to be used more efficiently.
+  2.Non-Contigouos Partitioning
+    -All the above problems comes because the whole Process has to be loaded into Main Memory
+    -And, it has to be at contiguous memory location
+    -What if, we remove the above restrictions, ie, Processes can be at different locations
+    -Above mentioned techniques do not allow these
+    -Below techniques such as
+      1.Paging
+      2.Segmentation
+      3.Paging with Segmentation
+    -These techniques support the above mentioned methodology
+    -These techniques divides the Process into different Pages or Segments and these pages or segments are loaded at different location into the memory
+    -These Pages or Segments donot have to be at continuous location
+
+--Dynamic Partitioning
+-It has its own challenges
+-Managing memory is difficult
+-After utilization Process go out of Main Memory, thus creating holes(empty spaces)
+-To manage such holes, we use
+1.BitMap
+-In BitMap, 1 means occupied 0 means free
+-Partially occupied also considered as Occupied
+-This way we manage which part of memory is free and which is occupied
+-Whenever a Process comes, we traverse BitMap to find the slot which can be taken by this Process
+-for memory 32 , 1/33 size is taken by BitMap
+-Disadvantage is, it takes lots of memory
+-This, it is practically avoided
+
+2.Linked List
+-Each Process and hole is represented by 1 block of Linked list
+-When Process goes out of Main Memory, holes combines to form bigger hole
+-To allocate memory to a Process a hole maintains its size maybe in form of start address and end address
+-The approches which we follow to allocate memory from LinkedList holes are
+1.First Fit
+-Whenever a Process requires memory allocation, we traverse the Linked List from beginning, keep traversing the holes and as soon as we find the first hole which can accomodate the Process,
+we allocate that hole to the Process
+-As soon as you find hole with memory size greater than Process, that hole is allocated to Process
+-Best Algorithm among the four
+2.Best Fit
+-Whenever a Process requires memory allocation, we traverse the Linked List from beginning to end to find the best possible hole whose size is as same as the memory size 
+required by the Process
+-Disadvantage is, entire linked list traversal is required
+-Another disadvantage is, it can create multiple very small holes which are difficult to allocate
+3.Next fit
+-When a Process comes, after traversal, we allocate the memory to Process, for the next Process, we start traversal from the position we allocated to previous Process, instead of starting
+traversal from beginning
+4.Worst Fit
+-Entire Linked List traversal is required
+-After entire traversal, we allocate the biggest hole in the linked list to the Process
+-Not very good
+
+
+
+        
+
+

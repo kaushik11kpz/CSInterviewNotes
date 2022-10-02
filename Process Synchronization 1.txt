@@ -1,0 +1,38 @@
+--Process Synchronization
+-Process----------> Independent
+       |----------> Cooperative
+-Process Synchroization is the communication of process with each other
+-It can happen in single processor system as well as multiple processors system
+-It happens in single processor due to concurrent execution
+-The interleaving of the process like in round robin algorithm is called concurrent execution
+-process communicate within a system using shared memory like global variables
+-Since all processes have access to global variables, thus by modifying these global variables, processes can communicate with each other
+-Atomic instruction ---> multiple statement executes together(not one after another)
+-When Output depends upon sequence of execution of instructions in a concurrent/multi-process/multi-threading environment. This condition is called race condition
+-Atomic instruction avoid Race Condition
+-Different interleaving(preemptive) cause different output
+
+--Critical Section(Solution of above problem)
+-The part of code where you access shared variable is called Critical Section
+-Other part of code can be called Non-Critical System
+-We can divide the code which requires Synchronization into Criticial Section and Non Critical Section
+-Now we need a mechanism(logic) so that only one process executes its Critical Section
+-So, we put logic before entering Critical Section
+-This logic can be
+1. Mutex Lock
+2. Semaphore
+-The logic before Critical Section is called Entry Point
+-The logic after Critical Section is called Exit Point
+
+--Goals of Synchronization Mechanisms( 1 and 2 are mandatory for synchronization)
+1. Mutual Exclusion(Only one process should be allowed to enter its Critical Section)
+2. Progress(Processes which are not executing in their Critical Section should not be blocking other processes)
+3. Bounded Waiting(It should not happen that a process is not entering in its Critical Section and other processes are getting multiple time entry in their Critical Section)
+4. Performance(The locking mechanism or logic which allow process to enter in its Critical Section should be fast)
+-Two types of Locking mechanism
+1. Hardware locking mechanism- It is faster and preffered
+2. Software locking mechanism
+
+
+
+

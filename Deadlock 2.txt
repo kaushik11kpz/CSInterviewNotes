@@ -1,0 +1,70 @@
+--Deadlock Avoidance - Banker's Algorithm
+-Developed by Dijkstra
+-When a process requests for resources OS checks whether to grant this request or not
+-All the Processes along with current holding(allocated) instances of Resources are given - Currently allocated resources
+-The Processes also declares their maximum instance need for each resource. This is not practically possible
+-Total instances for every resource is also given
+-Now if a Process requests a set of resources(P3 requestion <1,0>), some checks are done
+-These checks are
+1. If the requested instances of resources are within limit of that Process maximum required instance
+2. If instances are available for requested resources(Total resource instance - Occupied resource instance)
+3. OS assumes that requested instances of resource are allocated, do now it has safe state or deadlock is occuring
+-If it does not lead to a safe state then the request is not granted
+
+--How does the algorithm finds out if system is in safe state or not
+-If a safe sequence can be generated than system is in safe state else it is not in safe state
+-A safe sequence is a combination of Processes in which each process can be finished in serial order one by one(P2P3P4P1P0)
+-That it in safe sequence the process which comes one by one their resources are released in similar manner
+-A serial execution of process which can happen one by one then it is a safe state
+
+--Algorithm to find out the safe state
+-to find out if safe state exist or not, we build a need matrix
+-Need matrix is built by substracting allocated from the maximum instances of that process
+-Now, Algorithm,
+-Initialise the safe_sequence as empty
+-run a loop, while(all process are not added in safe_sequence)
+{
+ a)Find a Pi(process) whose, need(i)<available (need is smaller than or equal to available)
+ b)If(no such i exits) 
+    return false
+   else if(we found an i)
+    available+=allocated(i)
+    Add Pi to safe_sequence
+  return true;
+--Systeem can be in two state
+1.Safe state
+2.Unsafe state
+-Deadlock is a subsett of Unsafe state
+
+
+--Deadlock Detection and Recovery
+-This has 2 steps
+1.Detection
+-Deadlock detetion 2 types
+1.Single instance
+-To detect deadlock, we check Resource Allocation Graph
+   -If the Resource Allocation Graph has a cycle and(Run a cycle detection algorithm)
+   -All the resources have single instances, their is deadlock
+2.Multiple instance
+-To detect deadlock, in multiple instances of resources, we use
+-Banker's Algorithm with slight changes
+-Since, it might happen some process are not involved in deadlock so we do not consider those processes whose allocation is 0,0
+-i.e while genarting safe sequence we donot consider these processes whose allocation is 0,0
+-Now, while generating a safe sequence if we find a process cannot finish(not in the safe sequence), we say that this process is involved in the deadlock
+2.Recovery
+-It can be done in two ways
+1.Preempt resources
+-In this case OS must maintaines states of the Process
+-After preemption, Process must roll back to its previous state
+-This is impractical
+-It may lead to starvation as same processes  and resources may be picked again and again 
+2.Kill Process(es)
+1.Kills all prcoesses
+2.It picks a process and kills it then it checks if deadlock still there, then it picks one more and kills it, it goes on until deadlock is removed
+-Criteria to pick a Process to be killed
+1.What is parity of this Process
+2.How many Resource this Process is holding, more the resources holding, more the chances of causing deadlock
+3.How much CPU time it is already taken
+-Using above criteria OS picks a process and kills it
+    
+   
