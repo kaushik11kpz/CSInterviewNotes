@@ -1,0 +1,20 @@
+Link State Routing
+-Based on Dijkstra's algorithm
+-It does work in 2 phases
+ 1. Flooding
+  -Every node shares it neighbour information with everybody else in the network
+  -While flooding, if a router sees the same packet again, it simply ignores the packet
+  -Now every node has information about the whole graph/network
+ 2. After having the complete graph information every node independently run dijkstra's algorithm as every node knows the shortest
+   path to every body else
+  
+-Link State Routing is widely used in practice
+-Link State Routing is used in Standard protocol OSPF
+-OSPF is the most used routing Protocol
+-IS-IS protocol is Intermediate Sytem to Intermediate System
+-OSPF stands for Open Shortest Path First protocol
+
+-In Flooding, every node maintains source and Sequence number of a packet received
+-If a sequence number of a packet received is old, the packet is discarded
+-As soon as Link goes down or router is gone the information is flooded to everyone else using Link State Routing
+-To handle corrupted Sequnce number concept of Ageing is used

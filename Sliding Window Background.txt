@@ -1,0 +1,12 @@
+-The problems with Stop and Wait is that it is not utilizing the Channel efficiently
+
+-Sliding Window Protocol better utlizes efficinecy of channel especially if Bandwidth and Distance is high
+   -Bandwidth Delay Product = Bandwidth + Roundtrip Time
+   -BDP = B+2Tp
+   -It indicates capacity of your channel
+   -Capacity depends on
+    1.Bandwidth
+    2.Cross-Section Area
+   -It idicates how many bits can be there in channel at particular time
+   -If BDP, Stop and wait does not efficiently apply, Sliding Window is well utilized
+   -TCP window Sliding Windw alot 

@@ -1,0 +1,24 @@
+-The Problem is there are 2^32 IP address = 4.3 billion
+-Which is almost exhausted as the number of devices currently in use are far greater than 4.3 billion
+-To solve this, Network Address Translation(NAT) is used
+
+NAT
+-The idea of NAT is based on Private Network Address
+-Class A,B,C are private IP addresses
+-Class C IP addresses which are private are used most of the time in small networks
+-When ISP provides a router, the devices at home gets private IP addresses
+-The devices at home/office gets private IP addresses
+-Since, the router has two or more interfaces, the interface which is connected to home network have private IP addresses
+-The Interface which is connected to Internet has public IP address
+-These public IP addresses are routable addresses which are identified by outside Private or public networks
+-Private IP address are used for locally or privately in a network
+-So, home network is connected through One public IP address of router
+
+How we access Internet from home
+-Routers/Wifi Access Points also includes a NATBox
+-These NATBox changes source IP address of the Packet which goes to the Outside world
+-Whenever a request goes from local device to outside network, at router the NATBox changes the source IP address from IP address of local device(private IP address) to Public IP address
+of that router
+-The NATBox also maintains internal mapping of local IP address to router public IP address for response to be delievered to that exact local device
+-In response, NATBox again changes destination address from public IP address to local IP address 
+-It maintains internal mapping by using TCP and UDP port number to identify devices which are locally connected to NATBox

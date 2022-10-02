@@ -1,0 +1,37 @@
+-Two protocols on Transport Layer
+1. TCP
+2. UDP
+
+-TCP
+-It is a heavyweight protocol
+-It establishes a connection
+-Ensures Flow Control
+-Ensures better Error Control
+-Ensure order of Packets
+
+-If you want to build an Application on top of TCP, you have to
+-first call connect and web servr will be accepting your connection
+-That means, three packets are send just to establish a connection
+
+-Three Way Handshake(Only in TCP)
+-You as a Client will sends a Sequence number to server, the server will send an Acknowledgement and then you will send and an
+Acknowledgement
+
+-IN TCP
+-Sender's and Receiver's will both be maintaining windows
+-Both will be doing Congestion Control
+-If the congestion is there, that will slow down the rate of sending'
+-It provides reliability
+-HTTP, SMTP, FTP, HTTPS
+
+-UDP
+-It simply sends whatever you sends through Network Layer
+-Not much overhead
+-Source Port(16 bit), Destination Port(16 bit), Length(16 bit), Checksum(16 bit) - Total 8 byte
+-DNS, VoIP, DHCP, Network Time Protocol, Oniline games uses UDP
+-Multitasking, Broadcasting
+
+-When an Application Developer builds a network application,
+ -it creates a Socket
+ -While creating a socket, it is decided whether we want to use TCP(TCP socket) or UDP(UDP socket) using above reasoning and requirements
+ 

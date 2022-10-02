@@ -1,0 +1,39 @@
+-You are given a range of IP addresses
+-You divide this range into multiple subranges
+-and assign these subranges to different departments
+-This is subnetting
+
+-Subnetting is defined by a term called Subnet mask
+-Subnet mask is squence of 1's followed by sequence of 0's
+-It is of 32 bits
+-Ex - 255.0.0.0
+-The bits that are 1 indicates Network addresses
+-So in 255.0.0.0, 8 bits are Network addresses
+-For a Subnet mask 255.255.0.0 that means the network address in this subnetwork for all the devices has 16 bits
+-All the devices within a subnet will have the same Subnet mask
+-Number of 1 bits in a Subnet Mask tells number of bits which are used to identify Network address
+-Number of 0 bits tels the host id within a network
+-So all the device within a subnet shares the same Subnet mask and the number of 1 bits identifies you the network address
+and number of 0 bits tells you the host Id bits
+
+-Subnetting is the idea of diving your range IP addresses into multiple subnetworks so that these subnetworks can co-operate
+independently and can share their own devices, security can be achieved within subnetworks. 
+-It is done by taking some leading bits of host Id from Classfull addresses and we make new and bigger Network Id for individual
+subnets 
+
+- IP address of a device on a particular network - 192.168.13.3
+                     Subnet Mask of this network - 255.255.255.0 
+                                   (bitwise AND) & _______________
+              Network address of this IP address - 192.169.13.0 N/w address
+
+-The purpose of Subnet mask is that it tells you how many bits are used to identify network and the remaining bits are used to
+identify host within a network
+
+-Broadcast goes to every device in that network and every device sees and gives response to it
+-Use of Broadcast addresses, Ex - DHCP, ARP
+-Routing tabel also contains Subnet Mask which is Bitwise AND with IP address to find out the network address where the information
+should go
+
+-Subnet of Unequal sizes
+-Variable Length Subnet Masking(VLSM)
+-See photos

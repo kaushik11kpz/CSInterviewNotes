@@ -1,0 +1,23 @@
+---In OSI Layer - Network Layer
+   In TCP/IP Layer - IP Layer
+
+-Protocol - IP
+-Device - Router
+-Algorithm - Routing Algorithm
+ -Router does Internetworking
+ -One interface of router is part of local network and other is connected to Internet
+ -Internet has multiple Autonomous System and these Autonoumous System has multiple Routers in them which are interconnected
+ -Autonomous system are ISPs or large Organizations
+ -Routers carry traffic through Internet
+ -Routers has multiple interfaces which allow them to connect with multiple different types of Networks
+ -Routers have routing table which contains addresses of other routers/devices)
+ -Building Routing table and deciding where to send these packets is called Routing which is global
+ -Forwarding is local as it is already decided where to send packets
+ 
+-Services offered by Network Layer
+ 1. Internetworking(802.11,3G,Ethernet)
+ 2. Addressing
+ 3. Routing and Forwarding
+ 4. Scalability(using Hierarchy in Networks)
+ 5. Bandwidth Control
+ 6. Fragementation and Re-assembly

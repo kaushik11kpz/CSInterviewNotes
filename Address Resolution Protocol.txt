@@ -1,0 +1,16 @@
+ARP
+-Address Resolution Protocol is used to get MAC address of a device with given IP address
+-When a device in a network wants to connect to other device
+-Since it knows the IP address of gateway router but it needs MAC adress of gateway router
+-Thus, that device will send a LAN broadcast message, this broadcast goes to every device in that LAN
+-This is an ARP request requesting MAC address of given IP address
+-Now the router responds to ARP request with ARP response message and response message has mapping of IP address to MAC address
+-The device prepares a data link layer frame from IP datagram with destination MAC addresS as Gateway Router MAC address
+-This deice will nonw store the MAC address in cache for future use 
+-ARP Cache
+ -Storing Mapping of IP addresses to MAC addresses
+ -Low expiration times as IP addresses change quickly
+-RARP
+ -earlier used to get IP address for a MAC address
+ -Replaced by DHCP
+

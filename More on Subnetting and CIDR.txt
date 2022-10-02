@@ -1,0 +1,7 @@
+-a.b.c.d/n
+-Subnet Mask 111...11(n bits)00...0(32-n bits)
+-Total available IP addresses in this N/W  with subnet maks of n bits = 2^(32-n)
+-Total Uable IP addresses = 2^(32-n)-2
+-All IP addresses in this Network are going to have first n bits same
+-The first IP address(aka N/W address) is going to have 32-n bits 0. This is also known as Network IP address
+-Last IP address(aka Broadcast address) is going to have last 32-n bits as 1

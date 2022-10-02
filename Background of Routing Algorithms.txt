@@ -1,0 +1,27 @@
+-Routing algorithms decides the path a packet should take to reach its destination
+-Two forms of Routing Algorithm
+ 1. Exterior Gateway Protocol - Used for routing across Autonomous Systems
+  Ex- Border Gateway Protocol(BGP)
+ 2. Interior Gateway Protocol - Used for routing inside Autonomous System
+   A) Distance Vector
+     -It is based on Bellman Ford
+     Ex- 1. Routing Information Protocol(RIP)
+         2. Enhanced Interior Gateway Routing Protocol(EIGRP)
+   B) Link State
+     -It is based on Dijsktra's Algorithm
+     Ex- 1. IS-IS
+         2. OSPF
+
+-Static vs Dynamic Routing Algorithm
+-Unicast vs Broadcast vs Multicast va Anycast
+
+-How do we decide cost of links
+ 1. Bandwidth
+ 2. Network Delay
+ 3. Hop Count
+ 4. Path Cost
+ 5. Load
+ 6. Maximum Transmission Unit
+
+-Goals of Routing Algorithms
+ 

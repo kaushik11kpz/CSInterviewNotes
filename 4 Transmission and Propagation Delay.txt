@@ -1,0 +1,27 @@
+---Different Delay in CN
+1. Transmission Delay
+-Time taken by Sender to put data on the channel for trasmission
+-It depends upon 
+  1. Link Bandwidth
+  2. Packet Length
+-Transmissio Delay = Packet Length/Link Bandwidth
+
+2. Propagation Delay
+-Time taken by last bit of packet to reach from Sender to Receiver
+-Depends on 
+  1. Distance
+  2. Velocity
+-Propagation Delay = Distance/Velocity
+-Velocity depend on Medium such as Fibre Optical, Copper wire, coaxial cable etc
+
+3. Queuing Delay
+-The time a packet waits in queue of router is called queuing delay
+-Depends on traffic of router 
+
+4. Processing Delay
+-The time taken by router/receiver to Process(Encrypy/Decrypt and process the header) a packet
+-Depend on load/computing power of router/receiving
+
+-Total delay(t) is in sending a pcket from sender to a receiver
+-t = tt + tp + tq + tp
+
